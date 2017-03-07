@@ -20,7 +20,7 @@ public class Shop {
 
     @Getter
     @Setter
-    private String companyName;
+    private String shopName;
 
     @Getter
     @Setter

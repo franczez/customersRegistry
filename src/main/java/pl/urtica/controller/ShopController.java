@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.urtica.dto.ShopDto;
-import pl.urtica.service.ShopServiceImpl;
+import pl.urtica.service.ShopServiceInterface;
 
 import java.util.List;
 
@@ -15,15 +15,20 @@ import java.util.List;
 @RestController
 public class ShopController {
     @Autowired
-    ShopServiceImpl shopServiceImpl;
+    ShopServiceInterface shopService;
 
     @RequestMapping("/findAllShops")
     public List<ShopDto> findAllShops() {
-        return shopServiceImpl.findAllShops();
+        return shopService.findAllShops();
     }
 
     @RequestMapping("/modifyShop")
     public void modifyShop(@RequestBody ShopDto shop) {
+        shopService.modifyShop(shop);
+    }
 
+    @RequestMapping("/addShop")
+    public void addShop(@RequestBody ShopDto shop) {
+        shopService.addShop(shop);
     }
 }

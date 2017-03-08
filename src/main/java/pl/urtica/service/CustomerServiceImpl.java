@@ -3,9 +3,11 @@ package pl.urtica.service;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.urtica.dao.CustomerRepository;
 import pl.urtica.dto.CustomerDto;
-import pl.urtica.exception.NotImplemented;
+import pl.urtica.model.Customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,26 +16,33 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements CustomerServiceInterface{
     @Autowired
+    CustomerRepository customerRepository;
+
+    @Autowired
     DozerBeanMapper mapper;
 
     @Override
     public CustomerDto findCustomerById(Integer id) {
-        throw new NotImplemented();
+        Customer customer = customerRepository.findOne(id);
+        return mapper.map(customer, CustomerDto.class);
     }
 
     @Override
     public List<CustomerDto> findAllCustomers() {
-        throw new NotImplemented();
+        List<Customer> customers = customerRepository.findAll();
+        List<CustomerDto> customerDtos = new ArrayList<>();
+        customers.forEach(customer -> customerDtos.add(mapper.map(customer, CustomerDto.class)));
+
+        return customerDtos;
     }
 
     @Override
     public void deleteCustomer(Integer id) {
-        throw new NotImplemented();
+        customerRepository.delete(id);
     }
 
     @Override
-    public void modifyCustomer(CustomerDto customer) {
-        throw new NotImplemented();
-
+    public void addCustomer(CustomerDto customerDto) {
+        customerRepository.save(mapper.map(customerDto, Customer.class));
     }
 }

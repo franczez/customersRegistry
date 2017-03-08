@@ -75,4 +75,12 @@ public class ShopControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void addShop() throws Exception {
+        this.mockMvc.perform(post("/addShop")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(mapper.writeValueAsString(shop))
+                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(status().isOk());
+    }
 }

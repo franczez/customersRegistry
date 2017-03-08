@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
     @Bean
     public DozerBeanMapper mapper() {
-        DozerBeanMapper mapper = new DozerBeanMapper();
-        return mapper;
+        return new DozerBeanMapper();
     }
 }

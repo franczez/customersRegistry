@@ -10,5 +10,7 @@ import java.util.List;
 public interface ShopServiceInterface {
     List<ShopDto> findAllShops();
 
-    void modifyShop(Integer id);
+    void modifyShop(ShopDto shopDto);
+
+    void addShop(ShopDto shopDto);
 }

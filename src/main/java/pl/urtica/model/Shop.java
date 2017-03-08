@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by Kamil on 2017-03-06.
@@ -25,6 +25,6 @@ public class Shop {
     @Getter
     @Setter
     @OneToMany
-    private Set<Customer>  customers;
+    private List<Customer> customers;
 
 }

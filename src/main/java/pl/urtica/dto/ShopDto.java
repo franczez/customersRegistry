@@ -1,8 +1,9 @@
 package pl.urtica.dto;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import org.dozer.Mapping;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -11,16 +12,22 @@ import java.util.List;
  */
 public class ShopDto {
     @Getter
+    @Mapping("id")
     private Integer id;
 
     @Getter
+    @Mapping("shopName")
     private String shopName;
 
     @Getter
+    @Mapping("customers")
+    @Fetch(value = FetchMode.SELECT)
     private List<CustomerDto> customers;
 
-    @JsonCreator
-    public ShopDto(@JsonProperty("id") Integer id, @JsonProperty("shopName") String shopName, @JsonProperty("customers") List<CustomerDto> customers) {
+    public ShopDto() {
+    }
+
+    public ShopDto(Integer id, String shopName, List<CustomerDto> customers) {
         this.id = id;
         this.shopName = shopName;
         this.customers = customers;

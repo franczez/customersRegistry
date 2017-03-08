@@ -29,8 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(CustomerController.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@ActiveProfiles("development")
 public class CustomerControllerTest {
     @MockBean
     CustomerServiceImpl customerService;
@@ -89,8 +87,8 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void modifyCustomer() throws Exception {
-        this.mockMvc.perform(post("/modifyCustomer")
+    public void addCustomer() throws Exception {
+        this.mockMvc.perform(post("/addCustomer")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(mapper.writeValueAsString(customerDto))
                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))

@@ -3,7 +3,7 @@ package pl.urtica.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.urtica.dto.CustomerDto;
-import pl.urtica.service.CustomerServiceImpl;
+import pl.urtica.service.CustomerServiceInterface;
 
 import java.util.List;
 
@@ -13,25 +13,26 @@ import java.util.List;
 @RestController
 public class CustomerController {
     @Autowired
-    CustomerServiceImpl customerServiceImpl;
+    CustomerServiceInterface customerService;
 
     @RequestMapping(value = "/findCustomerById", method = RequestMethod.GET)
     public CustomerDto findCustomerById(@RequestParam Integer id) {
-        return customerServiceImpl.findCustomerById(id);
+        return customerService.findCustomerById(id);
     }
 
     @RequestMapping(value = "/findAllCustomers", method = RequestMethod.GET)
     public List<CustomerDto> findAllCustomers() {
-        return customerServiceImpl.findAllCustomers();
+        return customerService.findAllCustomers();
     }
 
     @RequestMapping(value = "/deleteCustomer", method = RequestMethod.GET)
     public void deleteCustomer(@RequestParam Integer id) {
-        customerServiceImpl.deleteCustomer(id);
+        customerService.deleteCustomer(id);
     }
 
-    @RequestMapping(value = "/modifyCustomer", method = RequestMethod.POST)
-    public void modifyCustomer(@RequestBody CustomerDto customer) {
-        customerServiceImpl.modifyCustomer(customer);
+    @RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
+    public void addCustomer(@RequestBody CustomerDto customer) {
+        customerService.addCustomer(customer);
     }
+
 }

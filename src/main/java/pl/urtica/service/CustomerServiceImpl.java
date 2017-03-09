@@ -30,10 +30,10 @@ public class CustomerServiceImpl implements CustomerServiceInterface{
     @Override
     public List<CustomerDto> findAllCustomers() {
         List<Customer> customers = customerRepository.findAll();
-        List<CustomerDto> customerDtos = new ArrayList<>();
-        customers.forEach(customer -> customerDtos.add(mapper.map(customer, CustomerDto.class)));
+        List<CustomerDto> customerDtoList = new ArrayList<>();
+        customers.forEach(customer -> customerDtoList.add(mapper.map(customer, CustomerDto.class)));
 
-        return customerDtos;
+        return customerDtoList;
     }
 
     @Override

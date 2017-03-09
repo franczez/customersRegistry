@@ -24,10 +24,10 @@ public class ShopServiceImpl implements ShopServiceInterface {
     @Override
     public List<ShopDto> findAllShops() {
         List<Shop> shopList = shopRepository.findAll();
-        List<ShopDto> shopDtos = new ArrayList<>();
-        shopList.forEach(shop -> shopDtos.add(mapper.map(shop, ShopDto.class)));
+        List<ShopDto> shopDtoList = new ArrayList<>();
+        shopList.forEach(shop -> shopDtoList.add(mapper.map(shop, ShopDto.class)));
 
-        return shopDtos;
+        return shopDtoList;
     }
 
     @Override
